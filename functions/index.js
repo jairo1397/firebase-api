@@ -11,10 +11,11 @@ admin.initializeApp({
     databaseURL: "https://crud-53510-default-rtdb.firebaseio.com"
 })
 app.get('', (req, res) => {
-    return res.status(200).json({ message: 'Bienvenido a la api de alumnos' })
+    return res.status(200).json({ message: 'Bienvenido a la api del sistema de monitoreo' })
 });
 
-
+app.use(require('./routes/tutores.routes'));
 app.use(require('./routes/alumnos.routes'));
-
+app.use(require('./routes/tutorias.routes'));
+app.use(require('./routes/acuerdos.routes'));
 exports.app = functions.https.onRequest(app);
