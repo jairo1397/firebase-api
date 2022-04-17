@@ -12,7 +12,7 @@ router.get('/api/tutorias', async (req, res) => {
         const docs = querySnapshot.docs;
         const response = docs.map((doc) => ({
             id: doc.id,
-            tuto: doc.data().tutor,
+            tutor: doc.data().tutor,
             alumno: doc.data().alumno,
             fecha: doc.data().fecha,
             hora: doc.data().hora,
@@ -68,6 +68,19 @@ router.get('/api/tutorias/:tutoria_id', (req, res) => {
     })();
 })
 
+router.put('/api/tutorias/:tutoria_id', (req, res) => {
+    (async () => {
+        try {
+            const doc = db.collection("tutorias").doc(req.params.alumno_id);
+            await doc.update({ tutor: req.body.tutor, alumno: req.body.alumno, fecha: req.body.fecha, hora: req.body.hora, reunion: req.body.reunion, grabacion: req.body.grabacion, acuerdos: req.body.acuerdos });
+            return res.status(200).json({ message: 'Tutoria actualizado' });
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ message: 'Error al actualizar la tutoria' });
+        }
+
+    })();
+})
 
 
 
