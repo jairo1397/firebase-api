@@ -71,7 +71,7 @@ router.get('/api/tutorias/:tutoria_id', (req, res) => {
 router.put('/api/tutorias/:tutoria_id', (req, res) => {
     (async () => {
         try {
-            const doc = db.collection("tutorias").doc(req.params.alumno_id);
+            const doc = db.collection("tutorias").doc(req.params.tutoria_id);
             await doc.update({ tutor: req.body.tutor, alumno: req.body.alumno, fecha: req.body.fecha, hora: req.body.hora, reunion: req.body.reunion, grabacion: req.body.grabacion, acuerdos: req.body.acuerdos });
             return res.status(200).json({ message: 'Tutoria actualizado' });
         } catch (error) {
